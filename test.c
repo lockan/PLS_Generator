@@ -16,11 +16,13 @@ struct songEntry {
 };
 
 void plsFromDir(char *dir_name);
+int getID3TagSize(FILE * fp);
 void getTitleName(FILE *fp, char *tnBuffer);	/* get song title from id3 */
 void getArtistName(FILE *fp, char *anBuffer);	/* get artist from id3 */
 int calcSongLength(int size_bytes, int bitrate); /* calc using filesize, bitrate */
 int getFileSize(FILE *fp);						/* get from struct stat */
 int calculateBitRate(FILE *fp);					/* calc data from bits id3 header block */
+void debugSongStruct(struct songEntry *se);
 
 
 int main(int argc, char *argv[])
@@ -31,14 +33,14 @@ int main(int argc, char *argv[])
 }
 
 void plsFromDir(char *dir_name) {
-	int 	numEntries;		/* Number of songs in single playlist.  */
-	DIR     *dir;
-	struct 	dirent *dentry;
-	struct	stat *dstat;
-	struct 	songEntry *song;
-	FILE	*songfile;
-	int		song_size;
-	int		song_bitrate;
+	int numEntries;		/* Number of songs in single playlist.  */
+	DIR *dir;
+	struct dirent *dentry;
+	struct stat *dstat;
+	struct songEntry *song;
+	FILE *songfile;
+	int song_size;
+	int	song_bitrate;
 	
 	printf("Generating PLS from files in directory \" %s \" \n", dir_name);
 	
@@ -49,34 +51,28 @@ void plsFromDir(char *dir_name) {
 				if ((song = malloc(sizeof(struct songEntry))) != NULL) {
 					if ((dstat = malloc(sizeof(struct stat))) != NULL) {
 						stat(dentry->d_name, dstat);
-						/* printf("%-50s %15d \n", dentry->d_name, (int)dstat->st_size); */
-						
-						songfile = fopen(dentry->d_name, "r");
+						songfile = fopen(dentry->d_name, "rb");
 						
 						strcpy(song->fileName, dentry->d_name);
 						strcpy(song->songArtist, "NULLARTIST");
 						strcpy(song->songTitle, "NULLTITLE");
 						
-						
 						song_size = dstat->st_size;
-						song_bitrate = calculateBitRate(songfile);	
+						song_bitrate = calculateBitRate(songfile);
 						
 						if (songfile != NULL) {
-							
-							song->songLength = calcSongLength(song_size, song_bitrate);
-							fclose(songfile);
+							if (strstr(dentry->d_name, ".mp3") != NULL ) {
+								getID3TagSize(songfile);
+								song->songLength = calcSongLength(song_size, song_bitrate);
+								fclose(songfile);
+								
+								debugSongStruct(song);
+							}
 						}
 						free(dstat);
 					}
-					printf("\n %-30s %.15s %.15s %10d", 
-					song->fileName, 
-					song->songArtist,
-					song->songTitle,
-					song->songLength);
-					
 					free(song);
 				}
-				
 			}
 			/*
 			else if (dir->d_type == DT_DIR) {
@@ -91,6 +87,41 @@ void plsFromDir(char *dir_name) {
 	closedir(dir);
 }
 
+int getID3TagSize(FILE *fp) {
+	char *id3check;
+	char *id3tagsize;
+	int tagsize;
+	
+	if( (id3check = malloc(3)) != NULL) {
+		if (fread(id3check, 3, 1, fp) != 0) {
+			if (strncmp(id3check, "ID3", 3) == 0) {
+				printf("\n[ valid mp3 found ]");
+				printf("\ntag: %s", id3check);
+				if( (id3tagsize = malloc(4)) != NULL ) {
+					if (fseek(fp, 6, SEEK_SET) == 0) {
+						if (fread(id3tagsize, 4, 1, fp) != 0) {
+							printf("\ntagsize: %.3x %.3x %.3x %.3x", 
+								id3tagsize[0],
+								id3tagsize[1],
+								id3tagsize[2],
+								id3tagsize[3]
+								);
+						}
+					}			
+				}
+			}
+			else {
+				printf("\n[ invalid mp3 ]");
+			}
+		}
+	}
+	
+	if (id3tagsize != NULL) free(id3tagsize);
+	if (id3check != NULL) free(id3check);
+	
+	return 0;
+}
+
 int calcSongLength(int size_bytes, int bitrate) {
 	/* calc filesize in bytes / 1024 to get filesize in Kbytes */
 	/* multiply Kbytes * 8 to get Kbits */
@@ -101,5 +132,13 @@ int calcSongLength(int size_bytes, int bitrate) {
 
 int calculateBitRate(FILE *fp) {
 	/* TODO: Read file, get bits, calc actual bitrate */
-	return 192;
+	return 268;
+}
+
+void debugSongStruct(struct songEntry *se) {
+	printf("\n%s \n%s \n%s \n%d", 
+		se->fileName, 
+		se->songArtist,
+		se->songTitle,
+		se->songLength);
 }

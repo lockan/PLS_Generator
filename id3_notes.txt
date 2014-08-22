@@ -1,0 +1,21 @@
+Full tag is variable size for id3 v2.3
+
+ID3 Header is 10 bytes (first 10 bytes of file)
+- first 3 bytes are "ID3" if id3 v2.3 (0-2)
+- next 2 bytes (3, 4) are the version
+- next byte (5) is the flags (binary)
+- bytes (6-9) are the size bits (in binary) 
+	** Needed to figure out how many frames to read. 
+
+Frames: 
+- frames are variable size
+- First 4 bytes of each frame are the frame ID
+	- TIT2 for title
+	- TPE1 - artist
+	- TRCK for track no. 	
+	- TPE2 - album artist
+Next 4 bytes are the size
+Next 2 bytes are the flags 
+* I assume that the actual content follows the flags bytes. 
+
+ 
