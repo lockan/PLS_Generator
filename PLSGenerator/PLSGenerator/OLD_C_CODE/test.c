@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <D:/Code/libraries/C/id3lib-3.8.3/include/id3.h>
 
 #define pls_header "[playlist]";
 #define mp3headersize 

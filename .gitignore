@@ -63,3 +63,9 @@ $RECYCLE.BIN/
 
 # StackDumps
 *.exe.stackdump
+
+#Visual Studio
+*.sdf
+
+#Media Files
+*.mp3
