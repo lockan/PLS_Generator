@@ -7,7 +7,7 @@
 using std::string;
 using std::ofstream;
 
-void walkDir( char *dir_name );
-void writeTrackEntry( string songfile, ofstream *plsfile );
+void playlistFromDir( string dir_name, int plsNum );
+void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum );
 
 #endif

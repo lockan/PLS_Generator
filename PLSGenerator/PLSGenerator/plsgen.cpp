@@ -1,8 +1,9 @@
 #include <cstdlib>
+#include <cstdio>
 #include <iostream>
 #include <fstream>
 #include <string>
-//#include <C:/cygwin64/usr/include/dirent.h>
+#include <sstream>
 #include "dirent.h"
 #include <sys/stat.h>
 #include "plsgen.h"
@@ -18,38 +19,44 @@ using namespace TagLib;
 
 int main(void) {
 
-    //plsFromDir( "D:\\Code\\C++\\PLS_Generator\\PLSGenerator\\PLSGenerator" );
-    walkDir( "D:\\Code\\C++\\PLS_Generator\\PLSGenerator\\PLSGenerator" );
+    cout << "<<<< RUNNING PLSGEN >>>>>" << endl;
+    
+    //TODO: Don't hardcode this: take working dir, or take an arg. 
+    int playListCount = 0;
+    playlistFromDir( "D:\\Code\\C++\\PLS_Generator\\PLSGenerator\\PLSGenerator", ++playListCount );
 
+    cout << "<<<<< PLSGEN FINISHED >>>>>" << endl;
     cin.get( );
     
     return 0;
 }
 
-void walkDir( char *dir_name )
+void playlistFromDir( string dir_name, int plsNum )
 {
+    cout << "Scanning directory " << dir_name << endl;
+    
     //TODO: find a better way to name the playlist file. 
-    //TODO: If need be, name it "temp.pls" and rename it to Album Title later. 
+    //If need be, name it "temp.pls" and rename it to Album Title later. 
     //Alternate: split the path string into an array using \ as delim, take the last item as the name 
-
-    string pls_name = dir_name;
-    pls_name.append( "\\playlist.pls" );
-     
+    stringstream pls_name;
+    pls_name << dir_name << "\\playlist" << plsNum << ".pls";
+    
     ofstream plsfile;   
-    plsfile.open( pls_name, std::ios_base::trunc );
+    plsfile.open( pls_name.str(), std::ios_base::trunc );
+    if ( !plsfile.is_open( ) ) cout << "FAILED TO CREATE PLAYLIST" << endl;
+    
     plsfile << "[playlist]" << endl << endl;
 
-    printf( "Generating PLS from files in directory \" %s \" \n", dir_name );
-
     DIR *dir;
-    dir = opendir( dir_name );
-    cout << dir_name << endl;
+    dir = opendir( dir_name.c_str() );
     //error-check opendir here. 
     
     struct stat *dstat;
     dstat = ( struct stat* )malloc( sizeof( struct stat ) );
         
     struct dirent *dentry;
+
+    int numEntries = 0;
             
     while ( ( dentry = readdir( dir ) ) != NULL )
     {
@@ -61,27 +68,55 @@ void walkDir( char *dir_name )
             if ( strstr( dentry->d_name, ".mp3" ) != NULL )
             {
                 cout << "[SONG]: " << dentry->d_name << endl;
-                writeTrackEntry( dentry->d_name, &plsfile );
+                
+                ++numEntries;
+                plsfile << "File" << numEntries << "=" << dir_name << "\\" << dentry->d_name << endl;
+                writeTrackEntry( dentry->d_name, &plsfile, numEntries );
             }
             else
             {
-                cout << "[file]: " << dentry->d_name << endl;
+                //cout << "[file]: " << dentry->d_name << endl;
             }
         }
         else if ( dentry->d_type == DT_DIR )
         {
-            cout << "[dir ]: " << dentry->d_name << endl;
+            //cout << "[dir ]: " << dentry->d_name << endl;
+            if ( string( dentry->d_name ).compare( "." ) != 0 && string( dentry->d_name ).compare( ".." ) != 0 )
+            {
+                stringstream newPath;
+                newPath << dir_name << "\\" << dentry->d_name;
+                playlistFromDir( newPath.str().c_str(), ++plsNum );
+            }
         }
     }
+    
+    plsfile << "NumberOfEntries=" << numEntries << endl << endl;
+    plsfile << "Version=2" << endl;
+
     plsfile.close( );
     closedir( dir );
-    std::free( dstat );  
+    std::free( dstat );
+
+    if ( numEntries > 0 )
+    {
+        cout << "Created Playlist: " << pls_name.str( ) << endl;
+    }
+    
+    if ( numEntries == 0 )
+    {
+        remove( pls_name.str().c_str() );
+    }
+    
+    return;
 }
 
-void writeTrackEntry( string songfile, ofstream *plsfile )
+void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
 {
     ifstream sfile;
+    //TODO: Bug: open fails on recursive call; Can't find file. 
+    //Need to use full file path, not just the filename.
     sfile.open( songfile, ios_base::binary );
+    if ( !sfile.is_open() ) cout << "Failed to open file " << songfile << endl;
     // error-check open() here. 
     
     TagLib::FileName fn( songfile.c_str() );
@@ -91,9 +126,8 @@ void writeTrackEntry( string songfile, ofstream *plsfile )
     {
         //TODO: prefix each line with FILE1, TITLE1, etc. 
         TagLib::Tag *tag = fr.tag( );
-        *plsfile << songfile << endl;
-        *plsfile << tag->artist( ) << " - " << tag->title( ) << endl;
-        *plsfile << "Length: " << fr.audioProperties( )->length( ) << endl << endl;
+        *plsfile << "Title" << entryNum << "=" << tag->artist( ) << " - " << tag->title( ) << endl;
+        *plsfile << "Length" << entryNum << "=" << fr.audioProperties( )->length( ) << endl << endl;
     }
 
     sfile.close( );
