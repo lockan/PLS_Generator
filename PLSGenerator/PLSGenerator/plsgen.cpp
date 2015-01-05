@@ -8,6 +8,9 @@
 #include <sys/stat.h>
 #include "plsgen.h"
 
+#include <D:/Code/libs/C++/boost_1_57_0/boost/algorithm/string/replace.hpp>
+#include <D:/Code/libs/c++/boost_1_57_0/boost/filesystem.hpp>
+
 #define TAGLIB_STATIC 
 
 #include <D:/Code/libs/C++/taglib/include/taglib/fileref.h>
@@ -15,15 +18,23 @@
 
 using namespace std;
 using namespace TagLib;
+using namespace boost::filesystem;
 
 
 int main(void) {
 
-    cout << "<<<< RUNNING PLSGEN >>>>>" << endl;
+    using boost::replace_all;
     
-    //TODO: Don't hardcode this: take working dir, or take an arg. 
+    cout << "<<<< RUNNING PLSGEN >>>>>" << endl;
+
+    boost::filesystem::path boost_curpath = current_path( );
+    stringstream runpath; 
+    runpath << path( boost_curpath ).string( );
+    
+    cout << "Current Path: " << runpath.str() << endl;
+
     int playListCount = 0;
-    playlistFromDir( "D:\\Code\\C++\\PLS_Generator\\PLSGenerator\\PLSGenerator", ++playListCount );
+    playlistFromDir( runpath.str(), ++playListCount );
 
     cout << "<<<<< PLSGEN FINISHED >>>>>" << endl;
     cin.get( );
@@ -113,8 +124,6 @@ void playlistFromDir( string dir_name, int plsNum )
 void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
 {
     ifstream sfile;
-    //TODO: Bug: open fails on recursive call; Can't find file. 
-    //Need to use full file path, not just the filename.
     sfile.open( songfile, ios_base::binary );
     if ( !sfile.is_open() ) cout << "Failed to open file " << songfile << endl;
     // error-check open() here. 
@@ -123,8 +132,7 @@ void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
     TagLib::FileRef fr( fn, true, TagLib::AudioProperties::Accurate );
     
     if ( !fr.isNull( ) )
-    {
-        //TODO: prefix each line with FILE1, TITLE1, etc. 
+    { 
         TagLib::Tag *tag = fr.tag( );
         *plsfile << "Title" << entryNum << "=" << tag->artist( ) << " - " << tag->title( ) << endl;
         *plsfile << "Length" << entryNum << "=" << fr.audioProperties( )->length( ) << endl << endl;

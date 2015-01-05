@@ -58,13 +58,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:/Code/libs/c++/boost_1_57_0/;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;tag.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Code\libs\C++\taglib\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Code\libs\C++\taglib\lib;D:\code\libs\C++\boost_1_57_0\lib\; D:\code\libs/C++\boost_1_57_0\stage\lib\</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>/NODEFAULTLIB:LIBCMT;</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
