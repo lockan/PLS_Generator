@@ -29,7 +29,7 @@ int main(void) {
     boost::filesystem::path boost_runpath = current_path( );
     //stringstream runpath; 
     //runpath << path( boost_curpath ).string( );
-    cout << "Current Path: " << boost_runpath << endl;
+    cout << "RunPath: " << boost_runpath << endl;
 
     int playListCount = 0;
     //playlistFromDir( runpath.str(), ++playListCount );
@@ -45,19 +45,19 @@ void playlistFromDir(path dir_name, int plsNum )
 {
     cout << "Scanning directory " << dir_name.string() << endl; //dir_name is same as runpath in main. (Full file path). 
     
-    //TODO: find a better way to name the playlist file. 
-    //If need be, name it "temp.pls" and rename it to Album Title later. 
-    //Alternate: split the path string into an array using \ as delim, take the last item as the name 
     stringstream pls_name;
-    //pls_name << dir_name << "\\playlist" << plsNum << ".pls";
     pls_name << dir_name.string() << "\\" << dir_name.filename().string() << ".pls";
-    cout << "DEBUG: plsname: " << pls_name.str() << endl;
+    cout << "PLS NAME: " << pls_name.str() << endl;
 
     ofstream plsfile;   
     //TODO: Error check the open() function. 
     plsfile.open( pls_name.str(), std::ios_base::trunc );
-    if ( !plsfile.is_open( ) ) cout << "FAILED TO CREATE PLAYLIST" << endl;
-    
+    if ( !plsfile.is_open( ) )
+    {
+        cout << "ERROR: FAILED TO CREATE PLAYLIST" << endl;
+        cout << "Returning, Skipping directory" << endl;
+        return;
+    }
     plsfile << "[playlist]" << endl << endl;
 
     DIR *dir;
@@ -85,10 +85,14 @@ void playlistFromDir(path dir_name, int plsNum )
             {
                 cout << "[SONG]: " << dentry->d_name << endl;
                 
-                ++numEntries;
-                //TODO: Try making these relative entries rather than full file paths. 
-                plsfile << "File" << numEntries << "=" << dir_name.string() << "\\" << dentry->d_name << endl;
-                writeTrackEntry( dentry->d_name, &plsfile, numEntries );
+                ++numEntries; 
+                //plsfile << "File" << numEntries << "=" << dir_name.string() << "\\" << dentry->d_name << endl;
+                plsfile << "File" << numEntries << "=" << dentry->d_name << endl; // Only using relative path rather than absolute. Just the filenamne in this case.
+                //writeTrackEntry( dentry->d_name, &plsfile, numEntries );
+                stringstream songPathString;
+                songPathString << dir_name.string( ) << "\\" << dentry->d_name;
+                path songPath = path( songPathString.str( ) );
+                writeTrackEntry( songPath, &plsfile, numEntries ); //TODO: requires absolute file path to find file. 
             }
             // HANDLE(IGNORE) NON-MP3, NON-DIR FILES
             else
@@ -102,9 +106,10 @@ void playlistFromDir(path dir_name, int plsNum )
             //cout << "[dir ]: " << dentry->d_name << endl;
             if ( string( dentry->d_name ).compare( "." ) != 0 && string( dentry->d_name ).compare( ".." ) != 0 )
             {
-                stringstream newPath;
-                newPath << dir_name << "\\" << dentry->d_name;
-                //playlistFromDir( newPath.str().c_str(), ++plsNum );
+                stringstream newPathString;
+                newPathString << dir_name.string() << "\\" << dentry->d_name;
+                path newPath = path( newPathString.str() );
+                playlistFromDir( newPath, ++plsNum );
             }
         }
     }
@@ -118,7 +123,7 @@ void playlistFromDir(path dir_name, int plsNum )
 
     if ( numEntries > 0 )
     {
-        cout << "Created Playlist: " << pls_name.str( ) << endl;
+        cout << "CREATED PLAYLIST: " << pls_name.str( ) << endl;
     }
     
     if ( numEntries == 0 )
@@ -128,15 +133,18 @@ void playlistFromDir(path dir_name, int plsNum )
     
     return;
 }
-
-void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
+void writeTrackEntry( path songfile, ofstream *plsfile, const int entryNum )
+//void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
 {
     stringstream songpath; 
-    songpath << songfile;
+    songpath << songfile.string();
+
+    //cout << "DEBUG: SONGPATH: " << songpath.str() << endl;
+    //cout << "DEBUG: SONFILE: " << songfile << endl;
 
     ifstream sfile;
     sfile.open( songpath.str( ), ios_base::binary );
-    if ( !sfile.is_open() ) cout << "Failed to open file " << songfile << endl;
+    if ( !sfile.is_open() ) cout << "ERROR: Failed to open file " << songfile << endl;
     // error-check open() here. 
     
     TagLib::FileName fn( songfile.c_str() );

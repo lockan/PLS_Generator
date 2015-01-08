@@ -9,7 +9,8 @@ using std::string;
 using std::ofstream;
 using boost::filesystem::path;
 
-void playlistFromDir( boost::filesystem::path dir_name, int plsNum );
-void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum );
+void playlistFromDir( path dir_name, int plsNum );
+//void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum );
+void writeTrackEntry( path songfile, ofstream *plsfile, const int entryNum );
 
 #endif
