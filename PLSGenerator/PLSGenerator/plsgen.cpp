@@ -8,7 +8,6 @@
 #include <sys/stat.h>
 #include "plsgen.h"
 
-#include <D:/Code/libs/C++/boost_1_57_0/boost/algorithm/string/replace.hpp>
 #include <D:/Code/libs/c++/boost_1_57_0/boost/filesystem.hpp>
 
 #define TAGLIB_STATIC 
@@ -23,43 +22,47 @@ using namespace boost::filesystem;
 
 int main(void) {
 
-    using boost::replace_all;
+    using boost::filesystem::path;
     
     cout << "<<<< RUNNING PLSGEN >>>>>" << endl;
 
-    boost::filesystem::path boost_curpath = current_path( );
-    stringstream runpath; 
-    runpath << path( boost_curpath ).string( );
-    
-    cout << "Current Path: " << runpath.str() << endl;
+    boost::filesystem::path boost_runpath = current_path( );
+    //stringstream runpath; 
+    //runpath << path( boost_curpath ).string( );
+    cout << "Current Path: " << boost_runpath << endl;
 
     int playListCount = 0;
-    playlistFromDir( runpath.str(), ++playListCount );
+    //playlistFromDir( runpath.str(), ++playListCount );
+    playlistFromDir( boost_runpath, playListCount );
 
-    cout << "<<<<< PLSGEN FINISHED >>>>>" << endl;
+    cout << endl << "<<<<< PLSGEN FINISHED >>>>>" << endl << endl;
     cin.get( );
     
     return 0;
 }
-
-void playlistFromDir( string dir_name, int plsNum )
+void playlistFromDir(path dir_name, int plsNum )
+//void playlistFromDir( string dir_name, int plsNum )
 {
-    cout << "Scanning directory " << dir_name << endl;
+    cout << "Scanning directory " << dir_name.string() << endl; //dir_name is same as runpath in main. (Full file path). 
     
     //TODO: find a better way to name the playlist file. 
     //If need be, name it "temp.pls" and rename it to Album Title later. 
     //Alternate: split the path string into an array using \ as delim, take the last item as the name 
     stringstream pls_name;
-    pls_name << dir_name << "\\playlist" << plsNum << ".pls";
-    
+    //pls_name << dir_name << "\\playlist" << plsNum << ".pls";
+    pls_name << dir_name.string() << "\\" << dir_name.filename().string() << ".pls";
+    cout << "DEBUG: plsname: " << pls_name.str() << endl;
+
     ofstream plsfile;   
+    //TODO: Error check the open() function. 
     plsfile.open( pls_name.str(), std::ios_base::trunc );
     if ( !plsfile.is_open( ) ) cout << "FAILED TO CREATE PLAYLIST" << endl;
     
     plsfile << "[playlist]" << endl << endl;
 
     DIR *dir;
-    dir = opendir( dir_name.c_str() );
+    dir = opendir( dir_name.string().c_str() );
+    //dir = opendir( dir_name.c_str() );
     //error-check opendir here. 
     
     struct stat *dstat;
@@ -71,24 +74,29 @@ void playlistFromDir( string dir_name, int plsNum )
             
     while ( ( dentry = readdir( dir ) ) != NULL )
     {
+        // HANDLE FILES
         if ( dentry->d_type == DT_REG )
         {
             stat( dentry->d_name, dstat );
             //error-check stat here.
                 
+            // HANDLE FILES WITH MP3 EXTENSION 
             if ( strstr( dentry->d_name, ".mp3" ) != NULL )
             {
                 cout << "[SONG]: " << dentry->d_name << endl;
                 
                 ++numEntries;
-                plsfile << "File" << numEntries << "=" << dir_name << "\\" << dentry->d_name << endl;
+                //TODO: Try making these relative entries rather than full file paths. 
+                plsfile << "File" << numEntries << "=" << dir_name.string() << "\\" << dentry->d_name << endl;
                 writeTrackEntry( dentry->d_name, &plsfile, numEntries );
             }
+            // HANDLE(IGNORE) NON-MP3, NON-DIR FILES
             else
             {
                 //cout << "[file]: " << dentry->d_name << endl;
             }
         }
+        // HANDLE DIRECTORIES
         else if ( dentry->d_type == DT_DIR )
         {
             //cout << "[dir ]: " << dentry->d_name << endl;
@@ -96,7 +104,7 @@ void playlistFromDir( string dir_name, int plsNum )
             {
                 stringstream newPath;
                 newPath << dir_name << "\\" << dentry->d_name;
-                playlistFromDir( newPath.str().c_str(), ++plsNum );
+                //playlistFromDir( newPath.str().c_str(), ++plsNum );
             }
         }
     }
@@ -123,8 +131,11 @@ void playlistFromDir( string dir_name, int plsNum )
 
 void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
 {
+    stringstream songpath; 
+    songpath << songfile;
+
     ifstream sfile;
-    sfile.open( songfile, ios_base::binary );
+    sfile.open( songpath.str( ), ios_base::binary );
     if ( !sfile.is_open() ) cout << "Failed to open file " << songfile << endl;
     // error-check open() here. 
     
