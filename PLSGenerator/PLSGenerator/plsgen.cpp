@@ -35,6 +35,8 @@ int main(void) {
     //playlistFromDir( runpath.str(), ++playListCount );
     playlistFromDir( boost_runpath, playListCount );
 
+    //TODO: Added some sort of stats counter to return the number of playlists successfully generated. 
+
     cout << endl << "<<<<< PLSGEN FINISHED >>>>>" << endl << endl;
     cin.get( );
     
@@ -47,7 +49,7 @@ void playlistFromDir(path dir_name, int plsNum )
     
     stringstream pls_name;
     pls_name << dir_name.string() << "\\" << dir_name.filename().string() << ".pls";
-    cout << "PLS NAME: " << pls_name.str() << endl;
+    //cout << "PLS NAME: " << pls_name.str() << endl;
 
     ofstream plsfile;   
     //TODO: Error check the open() function. 
@@ -123,7 +125,7 @@ void playlistFromDir(path dir_name, int plsNum )
 
     if ( numEntries > 0 )
     {
-        cout << "CREATED PLAYLIST: " << pls_name.str( ) << endl;
+        cout << endl << "CREATED PLAYLIST: " << pls_name.str( ) << endl << endl;
     }
     
     if ( numEntries == 0 )
