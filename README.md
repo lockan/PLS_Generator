@@ -23,11 +23,15 @@ PlsGen considers each folder a playlist.
 It will scan a directory tree recursively starting from the folder in which it is executed.
 If any MP3 files are encountered it will create a playlist (.pls) file for those MP3 files. 
 The file is created in the same directory as the found MP3s, and is named using the folder name. 
+Folders that do not contain MP3 files are ignored. 
 
 Example: 
 If you run PlsGen.exe from the root of your C:\iTunes\Media\Music\ folder and you 
 have 100 albums each in their own folder, PlsGen will generate 100 playlists - one for each folder/album
 and in their respective folders. 
+
+Warning: playlist file creation is destructive in nature. If a .pls with the same name already exists in 
+the location PlsGen is targeting, that playlist will be overwritten automatically and without warning. 
 
 [FileNames]
 Playlists are named by the root folder that contains the MP3 files. 
