@@ -1,10 +1,205 @@
-﻿Build started 2014-10-08 12:26:16 AM.
+﻿Build started 2014-12-20 6:50:48 PM.
      1>Project "D:\Code\C++\PLS_Generator\PLSGenerator\PLSGenerator\PLSGenerator.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt plsgen.cpp
+         plsgen.cpp
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(33): warning C4101: 'song_bitrate' : unreferenced local variable
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(32): warning C4101: 'song_size' : unreferenced local variable
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(31): warning C4101: 'numEntries' : unreferenced local variable
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(99): warning C4101: 'songfile' : unreferenced local variable
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(101): warning C4101: 'song_bitrate' : unreferenced local variable
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(100): warning C4101: 'song_size' : unreferenced local variable
+     1>d:\code\c++\pls_generator\plsgenerator\plsgenerator\plsgen.cpp(94): warning C4101: 'numEntries' : unreferenced local variable
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Code\C++\PLS_Generator\PLSGenerator\Debug\PLSGenerator.exe" /INCREMENTAL /NOLOGO /LIBPATH:D:\Code\libs\C++\taglib\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib tag.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Code\C++\PLS_Generator\PLSGenerator\Debug\PLSGenerator.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Code\C++\PLS_Generator\PLSGenerator\Debug\PLSGenerator.lib" /MACHINE:X86 Debug\plsgen.obj
-         PLSGenerator.vcxproj -> D:\Code\C++\PLS_Generator\PLSGenerator\Debug\PLSGenerator.exe
-     1>Done Building Project "D:\Code\C++\PLS_Generator\PLSGenerator\PLSGenerator\PLSGenerator.vcxproj" (Build target(s)).
+     1>tag.lib(tstring.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tstring.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tiostream.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tiostream.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(fileref.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(fileref.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tbytevector.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tbytevector.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tdebug.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tdebug.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(trefcounter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(trefcounter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tstringlist.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tstringlist.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(asffile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(asffile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mpegfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mpegfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(vorbisfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(vorbisfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(flacfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(flacfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(oggflacfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(oggflacfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mpcfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mpcfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mp4file.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mp4file.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(wavpackfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(wavpackfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(speexfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(speexfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(opusfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(opusfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(trueaudiofile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(trueaudiofile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(aifffile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(aifffile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(wavfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(wavfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(apefile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(apefile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(modfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(modfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(s3mfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(s3mfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(itfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(itfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(xmfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(xmfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tfilestream.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tfilestream.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tbytevectorlist.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tbytevectorlist.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(asfproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(asfproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(asfattribute.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(asfattribute.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(asftag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(asftag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tagunion.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tagunion.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2header.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2header.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2framefactory.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2framefactory.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2tag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2tag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v1tag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v1tag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(apefooter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(apefooter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(apetag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(apetag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mpegproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mpegproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(tpropertymap.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(tpropertymap.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(oggfile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(oggfile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(xiphcomment.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(xiphcomment.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(vorbisproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(vorbisproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(flacpicture.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(flacpicture.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(flacproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(flacproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(flacunknownmetadatablock.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(flacunknownmetadatablock.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mpcproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mpcproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mp4atom.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mp4atom.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mp4tag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mp4tag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mp4properties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mp4properties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(wavpackproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(wavpackproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(speexproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(speexproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(opusproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(opusproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(trueaudioproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(trueaudioproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(rifffile.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(rifffile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(aiffproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(aiffproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(infotag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(infotag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(wavproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(wavproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(apeproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(apeproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(modfilebase.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(modfilebase.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(modtag.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(modtag.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(modproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(modproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(s3mproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(s3mproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(itproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(itproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(xmproperties.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(xmproperties.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(asfpicture.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(asfpicture.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2footer.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2footer.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2synchdata.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2synchdata.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2frame.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2frame.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v1genres.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v1genres.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(attachedpictureframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(attachedpictureframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(commentsframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(commentsframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(relativevolumeframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(relativevolumeframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(textidentificationframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(textidentificationframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(uniquefileidentifierframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(uniquefileidentifierframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(unknownframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(unknownframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(generalencapsulatedobjectframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(generalencapsulatedobjectframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(urllinkframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(urllinkframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(unsynchronizedlyricsframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(unsynchronizedlyricsframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(popularimeterframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(popularimeterframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(privateframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(privateframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(ownershipframe.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(ownershipframe.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(id3v2extendedheader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(id3v2extendedheader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(apeitem.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(apeitem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mpegheader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mpegheader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(xingheader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(xingheader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(oggpage.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(oggpage.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(oggpageheader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(oggpageheader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(flacmetadatablock.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(flacmetadatablock.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mp4coverart.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mp4coverart.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>tag.lib(mp4item.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in plsgen.obj
+     1>tag.lib(mp4item.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in plsgen.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>D:\Code\C++\PLS_Generator\PLSGenerator\Debug\PLSGenerator.exe : fatal error LNK1319: 184 mismatches detected
+     1>Done Building Project "D:\Code\C++\PLS_Generator\PLSGenerator\PLSGenerator\PLSGenerator.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:03.77

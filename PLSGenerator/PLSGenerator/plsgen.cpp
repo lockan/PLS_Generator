@@ -11,7 +11,6 @@
 #include <D:/Code/libs/c++/boost_1_57_0/boost/filesystem.hpp>
 
 #define TAGLIB_STATIC 
-
 #include <D:/Code/libs/C++/taglib/include/taglib/fileref.h>
 #include <D:/Code/libs/C++/taglib/include/taglib/tag.h>
 
@@ -19,29 +18,34 @@ using namespace std;
 using namespace TagLib;
 using namespace boost::filesystem;
 
+bool mode_Recursive = false;
+bool mode_Simple = false;
+bool mode_Targeted = false;
+boost::filesystem::path startDir;
 
-int main(void) {
+int main(int argc, char** argv) {
 
     using boost::filesystem::path;
-    
+
     cout << "<<<< RUNNING PLSGEN >>>>>" << endl;
 
+    checkOptions( &argc, argv );
+
     boost::filesystem::path boost_runpath = current_path( );
-    //stringstream runpath; 
-    //runpath << path( boost_curpath ).string( );
-    cout << "RunPath: " << boost_runpath << endl;
+    if ( !mode_Targeted ) startDir = boost_runpath;
+    cout << "RunPath: " << startDir << endl;
 
     int playListCount = 0;
-    //playlistFromDir( runpath.str(), ++playListCount );
     playlistFromDir( boost_runpath, playListCount );
 
-    //TODO: Added some sort of stats counter to return the number of playlists successfully generated. 
+    //TODO: Add some sort of stats counter to return the number of playlists successfully generated. 
 
     cout << endl << "<<<<< PLSGEN FINISHED >>>>>" << endl << endl;
     cin.get( );
     
     return 0;
 }
+
 void playlistFromDir(path dir_name, int plsNum )
 //void playlistFromDir( string dir_name, int plsNum )
 {
@@ -49,7 +53,6 @@ void playlistFromDir(path dir_name, int plsNum )
     
     stringstream pls_name;
     pls_name << dir_name.string() << "\\" << dir_name.filename().string() << ".pls";
-    //cout << "PLS NAME: " << pls_name.str() << endl;
 
     ofstream plsfile;   
     //TODO: Error check the open() function. 
@@ -64,7 +67,7 @@ void playlistFromDir(path dir_name, int plsNum )
 
     DIR *dir;
     dir = opendir( dir_name.string().c_str() );
-    //dir = opendir( dir_name.c_str() );
+
     //error-check opendir here. 
     
     struct stat *dstat;
@@ -88,9 +91,9 @@ void playlistFromDir(path dir_name, int plsNum )
                 cout << "[SONG]: " << dentry->d_name << endl;
                 
                 ++numEntries; 
-                //plsfile << "File" << numEntries << "=" << dir_name.string() << "\\" << dentry->d_name << endl;
+                
                 plsfile << "File" << numEntries << "=" << dentry->d_name << endl; // Only using relative path rather than absolute. Just the filenamne in this case.
-                //writeTrackEntry( dentry->d_name, &plsfile, numEntries );
+                
                 stringstream songPathString;
                 songPathString << dir_name.string( ) << "\\" << dentry->d_name;
                 path songPath = path( songPathString.str( ) );
@@ -99,13 +102,12 @@ void playlistFromDir(path dir_name, int plsNum )
             // HANDLE(IGNORE) NON-MP3, NON-DIR FILES
             else
             {
-                //cout << "[file]: " << dentry->d_name << endl;
+                //Do nothing - ignore file
             }
         }
         // HANDLE DIRECTORIES
-        else if ( dentry->d_type == DT_DIR )
+        else if ( dentry->d_type == DT_DIR && mode_Recursive)
         {
-            //cout << "[dir ]: " << dentry->d_name << endl;
             if ( string( dentry->d_name ).compare( "." ) != 0 && string( dentry->d_name ).compare( ".." ) != 0 )
             {
                 stringstream newPathString;
@@ -135,14 +137,12 @@ void playlistFromDir(path dir_name, int plsNum )
     
     return;
 }
+
 void writeTrackEntry( path songfile, ofstream *plsfile, const int entryNum )
 //void writeTrackEntry( string songfile, ofstream *plsfile, const int entryNum )
 {
     stringstream songpath; 
     songpath << songfile.string();
-
-    //cout << "DEBUG: SONGPATH: " << songpath.str() << endl;
-    //cout << "DEBUG: SONFILE: " << songfile << endl;
 
     ifstream sfile;
     sfile.open( songpath.str( ), ios_base::binary );
@@ -155,10 +155,47 @@ void writeTrackEntry( path songfile, ofstream *plsfile, const int entryNum )
     if ( !fr.isNull( ) )
     { 
         TagLib::Tag *tag = fr.tag( );
-        *plsfile << "Title" << entryNum << "=" << tag->artist( ) << " - " << tag->title( ) << endl;
+        if ( !mode_Simple )
+        {
+            *plsfile << "Title" << entryNum << "=" << tag->artist( ) << " - " << tag->title( ) << endl;
+        }
         *plsfile << "Length" << entryNum << "=" << fr.audioProperties( )->length( ) << endl << endl;
     }
 
     sfile.close( );
     //error-check close() here.
+}
+
+void checkOptions(const int *argsnum, char **args )
+{
+    for ( int i = 1; i < *argsnum; i++ )
+    {
+        if ( string( args[ i ] ).compare( "-r" ) == 0 )
+        {
+            //Enable recursize mode
+            mode_Recursive = true;
+            cout << "Recursive mode enabled." << endl;
+        }
+        if ( string( args[ i ] ).compare( "-s" ) == 0 )
+        {
+            //Enable simple mode
+            mode_Simple = true;
+            cout << "Simple mode enabled" << endl;
+        }
+        if ( string( args[ i ] ).compare( "-t" ) == 0 )
+        {
+            //Set target directory
+            if ( args[ i + 1 ] != NULL )
+            {
+                mode_Targeted = true;
+                startDir = string( args[ i + 1 ] );
+                cout << "Target start directory set: " << startDir << endl;
+            }
+            else
+            {
+                //TODO: abort, print usage. 
+                cout << "Missing target dir. Running in current dir." << endl;
+            }
+        }
+    }
 }
