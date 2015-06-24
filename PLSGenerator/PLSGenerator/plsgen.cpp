@@ -32,16 +32,16 @@ int main(int argc, char** argv) {
     checkOptions( &argc, argv );
 
     boost::filesystem::path boost_runpath = current_path( );
-    if ( !mode_Targeted ) startDir = boost_runpath;
+    if ( !mode_Targeted ) startDir = boost_runpath;     //use current exe path if -t option missing. 
     cout << "RunPath: " << startDir << endl;
 
     int playListCount = 0;
-    playlistFromDir( boost_runpath, playListCount );
-
-    //TODO: Add some sort of stats counter to return the number of playlists successfully generated. 
+    //playlistFromDir( boost_runpath, playListCount );
+    playlistFromDir( startDir, playListCount );
+    
+    //TODO: Add stats counter to return the number of playlists successfully generated. 
 
     cout << endl << "<<<<< PLSGEN FINISHED >>>>>" << endl << endl;
-    cin.get( );
     
     return 0;
 }
@@ -193,9 +193,24 @@ void checkOptions(const int *argsnum, char **args )
             }
             else
             {
-                //TODO: abort, print usage. 
-                cout << "Missing target dir. Running in current dir." << endl;
+                printUsage( );
             }
         }
+        if ( string( args[ i ] ).compare( "-h" ) == 0 )
+        {
+            //Show usage message. 
+            printUsage( );
+        }
     }
+}
+
+void printUsage( )
+{
+    cout << "PLSGenerator Usage: " << endl;
+    cout << "PLSGenerator [-r] [-s] [-t {path}]" << endl << endl;
+    cout << "Options: " << endl;
+    cout << "-h: Help. Shows this usage message." << endl;
+    cout << "-t {path}: Targeted mode. Start scanning for files at {path}. Default without -t is to use the current working directory." << endl;
+    cout << "-r : Recursive mode. Scan the current/target directory and all subdirectories in the tree." << endl;
+    cout << "-s : Simple mode. Playlist will not include the [title] lines. Use if your player shows duplicate entries for each track." << endl << endl;
 }

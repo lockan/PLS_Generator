@@ -12,5 +12,6 @@ using boost::filesystem::path;
 void playlistFromDir( path dir_name, int plsNum );
 void writeTrackEntry( path songfile, ofstream *plsfile, const int entryNum );
 void checkOptions( const int *argsnum, char **args );
+void printUsage( );
 
 #endif
